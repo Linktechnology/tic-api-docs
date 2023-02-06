@@ -1,17 +1,13 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "CWS API for TIC",
+    "title": "CWS (cau) API Documentation for TIC",
     "version": "1.0"
   },
   "servers": [
     {
       "url": "https://cau.cws.app/api/",
-      "description": "Production Server"
-    },
-    {
-      "url": "https://cau-stage.cws.app/api/",
-      "description": "Test Server"
+      "description": "CWS System"
     }
   ],
   "paths": {
