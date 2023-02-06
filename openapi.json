@@ -1,0 +1,334 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CWS API for TIC",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://cau.cws.app/api/",
+      "description": "Production Server"
+    },
+    {
+      "url": "https://cau-stage.cws.app/api/",
+      "description": "Test Server"
+    }
+  ],
+  "paths": {
+    "/auth": {
+      "post": {
+        "summary": "Create a new Access Token from Username and Password",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "username",
+                  "password"
+                ],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "example": "user@user.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "mysecretpassword"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ResponseToken"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResponseErrorBadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResponseErrorUnauthorized"
+          },
+          "405": {
+            "$ref": "#/components/responses/ResponseMethodNotAllowed"
+          }
+        }
+      }
+    },
+    "/refresh": {
+      "post": {
+        "summary": "Refresh an existing access token",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "refreshToken"
+                ],
+                "properties": {
+                  "refreshToken": {
+                    "type": "string",
+                    "example": "BqdmioqjlgaSBTIarf8coYFhZfBeqCn82AulZVEkbPdNIVYaa6ny43P4iriJ4FR7gmtgi8AtXOhGKfRVmfuqijvBLOkQtcXKyq0QyBkwqCdaR55dkzEDTaeFYyvsLtcj"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ResponseToken"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResponseErrorBadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResponseErrorUnauthorized"
+          },
+          "405": {
+            "$ref": "#/components/responses/ResponseMethodNotAllowed"
+          }
+        }
+      }
+    },
+    "/ticwo": {
+      "post": {
+        "summary": "Create a new Tic Wo",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "Id",
+                  "ProductDescription",
+                  "ProductGroup",
+                  "ProductBrand",
+                  "ProductSerialNumber",
+                  "ItmModelNumber",
+                  "FirstName",
+                  "LastName",
+                  "Email",
+                  "Phone",
+                  "AltPhone",
+                  "Address",
+                  "Suburb",
+                  "Postcode",
+                  "DateofPurchase",
+                  "FaultCode"
+                ],
+                "properties": {
+                  "Id": {
+                    "type": "integer"
+                  },
+                  "ProductDescription": {
+                    "type": "string"
+                  },
+                  "ProductGroup": {
+                    "type": "string"
+                  },
+                  "ProductBrand": {
+                    "type": "string"
+                  },
+                  "ProductSerialNumber": {
+                    "type": "string"
+                  },
+                  "ItmModelNumber": {
+                    "type": "string"
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "integer"
+                  },
+                  "AltPhone": {
+                    "type": "integer"
+                  },
+                  "Address": {
+                    "type": "string"
+                  },
+                  "Suburb": {
+                    "type": "string"
+                  },
+                  "Postcode": {
+                    "type": "integer"
+                  },
+                  "DateofPurchase": {
+                    "type": "string"
+                  },
+                  "FaultCode": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/ResponseWoCreateSuccess"
+          },
+          "400": {
+            "$ref": "#/components/responses/ResponseErrorBadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/ResponseErrorUnauthorized"
+          },
+          "405": {
+            "$ref": "#/components/responses/ResponseMethodNotAllowed"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "description": "Enter the token with the `Bearer: ` prefix, e.g. \"Bearer {accessToken}\".",
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "responses": {
+      "ResponseToken": {
+        "description": "New Token Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "description": "Whether the request was successful",
+                  "example": true
+                },
+                "accessToken": {
+                  "type": "string",
+                  "description": "Your new token",
+                  "example": "BqdmioqjlgaSBTIarf8coYFhZfBeqCn82AulZVEkbPdNIVYaa6ny43P4iriJ4FR7gmtgi8AtXOhGKfRVmfuqijvBLOkQtcXKyq0QyBkwqCdaR55dkzEDTaeFYyvsLtcj"
+                },
+                "accessExpiredAt": {
+                  "type": "integer",
+                  "description": "When the token will expire",
+                  "example": 1111111111
+                },
+                "refreshToken": {
+                  "type": "string",
+                  "description": "Your new token",
+                  "example": "BqdmioqjlgaSBTIarf8coYFhZfBeqCn82AulZVEkbPdNIVYaa6ny43P4iriJ4FR7gmtgi8AtXOhGKfRVmfuqijvBLOkQtcXKyq0QyBkwqCdaR55dkzEDTaeFYyvsLtcj"
+                },
+                "refreshExpiredAt": {
+                  "type": "integer",
+                  "description": "When the token will expire",
+                  "example": 1111111111
+                }
+              }
+            }
+          }
+        }
+      },
+      "ResponseSuccess": {
+        "description": "A successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "description": "A success response Object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "description": "Whether the request was successful",
+                  "example": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "ResponseWoCreateSuccess": {
+        "description": "Created Workorder OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "description": "A success response Object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "description": "Whether the request was successful",
+                  "example": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "ResponseErrorBadRequest": {
+        "description": "The request is malformed and needs to be fixed",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorSchema"
+            }
+          }
+        }
+      },
+      "ResponseErrorUnauthorized": {
+        "description": "The request is not authorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorSchema"
+            }
+          }
+        }
+      },
+      "ResponseMethodNotAllowed": {
+        "description": "The request is to a non existant endpoint or is using the wrong method",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorSchema"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "ErrorSchema": {
+        "type": "object",
+        "description": "An error response Object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the request was successful",
+            "example": false
+          },
+          "error": {
+            "type": "string",
+            "description": "The error message",
+            "example": "Error description message text"
+          }
+        }
+      }
+    }
+  }
+}
