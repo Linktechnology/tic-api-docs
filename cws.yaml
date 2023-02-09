@@ -75,55 +75,65 @@ paths:
             schema:
               type: object
               required:
-                - Id
-                - ProductDescription
-                - ProductGroup
-                - ProductBrand
-                - ProductSerialNumber
-                - ItmModelNumber
-                - FirstName
-                - LastName
-                - Email
-                - Phone
-                - AltPhone
-                - Address
-                - Suburb
-                - Postcode
-                - DateofPurchase
-                - FaultCode
+                - RequestData
               properties:
-                Id:
-                  type: integer
-                ProductDescription:
-                  type: string
-                ProductGroup:
-                  type: string
-                ProductBrand:
-                  type: string
-                ProductSerialNumber:
-                  type: string
-                ItmModelNumber:
-                  type: string
-                FirstName:
-                  type: string
-                LastName:
-                  type: string
-                Email:
-                  type: string
-                Phone:
-                  type: integer
-                AltPhone:
-                  type: integer
-                Address:
-                  type: string
-                Suburb:
-                  type: string
-                Postcode:
-                  type: integer
-                DateofPurchase:
-                  type: string
-                FaultCode:
-                  type: string
+                RequestData:
+                  type: object
+                  required:
+                    - Case
+                  properties:
+                    Case:
+                      type: object
+                      required:
+                        - Id
+                        - ProductDescription
+                        - ProductGroup
+                        - ProductBrand
+                        - ProductSerialNumber
+                        - ItmModelNumber
+                        - FirstName
+                        - LastName
+                        - Email
+                        - Phone
+                        - AltPhone
+                        - Address
+                        - Suburb
+                        - Postcode
+                        - DateofPurchase
+                        - FaultCode
+                      properties:
+                        Id:
+                          type: integer
+                        ProductDescription:
+                          type: string
+                        ProductGroup:
+                          type: string
+                        ProductBrand:
+                          type: string
+                        ProductSerialNumber:
+                          type: string
+                        ItmModelNumber:
+                          type: string
+                        FirstName:
+                          type: string
+                        LastName:
+                          type: string
+                        Email:
+                          type: string
+                        Phone:
+                          type: integer
+                        AltPhone:
+                          type: integer
+                        Address:
+                          type: string
+                        Suburb:
+                          type: string
+                        Postcode:
+                          type: integer
+                        DateofPurchase:
+                          type: string
+                        FaultCode:
+                          type: string
       responses:
         '201':
           $ref: '#/components/responses/ResponseWoCreateSuccess'

@@ -1,13 +1,17 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "CWS (cau) API Documentation for TIC",
+    "title": "CWS API for TIC",
     "version": "1.0"
   },
   "servers": [
     {
       "url": "https://cau.cws.app/api/",
-      "description": "CWS System"
+      "description": "Production Server"
+    },
+    {
+      "url": "https://cau-stage.cws.app/api/",
+      "description": "Test Server"
     }
   ],
   "paths": {
@@ -107,71 +111,87 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "Id",
-                  "ProductDescription",
-                  "ProductGroup",
-                  "ProductBrand",
-                  "ProductSerialNumber",
-                  "ItmModelNumber",
-                  "FirstName",
-                  "LastName",
-                  "Email",
-                  "Phone",
-                  "AltPhone",
-                  "Address",
-                  "Suburb",
-                  "Postcode",
-                  "DateofPurchase",
-                  "FaultCode"
+                  "RequestData"
                 ],
                 "properties": {
-                  "Id": {
-                    "type": "integer"
-                  },
-                  "ProductDescription": {
-                    "type": "string"
-                  },
-                  "ProductGroup": {
-                    "type": "string"
-                  },
-                  "ProductBrand": {
-                    "type": "string"
-                  },
-                  "ProductSerialNumber": {
-                    "type": "string"
-                  },
-                  "ItmModelNumber": {
-                    "type": "string"
-                  },
-                  "FirstName": {
-                    "type": "string"
-                  },
-                  "LastName": {
-                    "type": "string"
-                  },
-                  "Email": {
-                    "type": "string"
-                  },
-                  "Phone": {
-                    "type": "integer"
-                  },
-                  "AltPhone": {
-                    "type": "integer"
-                  },
-                  "Address": {
-                    "type": "string"
-                  },
-                  "Suburb": {
-                    "type": "string"
-                  },
-                  "Postcode": {
-                    "type": "integer"
-                  },
-                  "DateofPurchase": {
-                    "type": "string"
-                  },
-                  "FaultCode": {
-                    "type": "string"
+                  "RequestData": {
+                    "type": "object",
+                    "required": [
+                      "Case"
+                    ],
+                    "properties": {
+                      "Case": {
+                        "type": "object",
+                        "required": [
+                          "Id",
+                          "ProductDescription",
+                          "ProductGroup",
+                          "ProductBrand",
+                          "ProductSerialNumber",
+                          "ItmModelNumber",
+                          "FirstName",
+                          "LastName",
+                          "Email",
+                          "Phone",
+                          "AltPhone",
+                          "Address",
+                          "Suburb",
+                          "Postcode",
+                          "DateofPurchase",
+                          "FaultCode"
+                        ],
+                        "properties": {
+                          "Id": {
+                            "type": "integer"
+                          },
+                          "ProductDescription": {
+                            "type": "string"
+                          },
+                          "ProductGroup": {
+                            "type": "string"
+                          },
+                          "ProductBrand": {
+                            "type": "string"
+                          },
+                          "ProductSerialNumber": {
+                            "type": "string"
+                          },
+                          "ItmModelNumber": {
+                            "type": "string"
+                          },
+                          "FirstName": {
+                            "type": "string"
+                          },
+                          "LastName": {
+                            "type": "string"
+                          },
+                          "Email": {
+                            "type": "string"
+                          },
+                          "Phone": {
+                            "type": "integer"
+                          },
+                          "AltPhone": {
+                            "type": "integer"
+                          },
+                          "Address": {
+                            "type": "string"
+                          },
+                          "Suburb": {
+                            "type": "string"
+                          },
+                          "Postcode": {
+                            "type": "integer"
+                          },
+                          "DateofPurchase": {
+                            "type": "string"
+                          },
+                          "FaultCode": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
